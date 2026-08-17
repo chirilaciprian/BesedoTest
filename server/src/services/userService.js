@@ -1,6 +1,8 @@
-import generateUsers from "../utils/seed.js";
+let users = [];
 
-let users = generateUsers(200);
+function initialize(initialUsers = []) {
+  users = [...initialUsers];
+}
 
 function getAllUsers() {
   return users;
@@ -20,7 +22,7 @@ function createUser(data) {
 function updateUser(id, data) {
   const index = users.findIndex((u) => u.id === id);
   if (index === -1) {
-    return false;
+    return null;
   }
   users[index] = { ...users[index], ...data };
   return users[index];
@@ -36,4 +38,11 @@ function deleteUser(id) {
   return user;
 }
 
-export { createUser, getAllUsers, getUserById, updateUser, deleteUser };
+export {
+  initialize,
+  createUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+};
