@@ -1,6 +1,6 @@
-import app from "./app";
-import { initialize } from "./services/userService";
-import generateUsers from "./utils/seed";
+import app from "./app.js";
+import { initialize } from "./services/userService.js";
+import generateUsers from "./utils/seed.js";
 
 initialize(generateUsers(200))
 
