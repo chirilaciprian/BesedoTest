@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Table Container & Card Wrapper
+   ========================================================================== */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--color-bg-card, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+    position: relative;
+}
+
+/* Custom scrollbar for horizontal table scroll */
+.table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: var(--color-bg-muted, #f1f5f9);
+    border-radius: 0 0 12px 12px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ==========================================================================
+   Records Table Structure
+   ========================================================================== */
+.records-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+/* Header Cells */
+.records-table th {
+    padding: 0.875rem 1.25rem;
+    background-color: var(--color-bg-subtle, #f8fafc);
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    color: var(--color-text-muted, #475569);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: capitalize;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+}
+
+.records-table th:first-child {
+    border-top-left-radius: var(--radius-lg, 12px);
+}
+
+.records-table th:last-child {
+    border-top-right-radius: var(--radius-lg, 12px);
+    text-align: right;
+}
+
+/* Sortable Header */
+.records-table th.th-sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color var(--transition-fast, 150ms ease), color var(--transition-fast, 150ms ease);
+}
+
+.records-table th.th-sortable:hover {
+    background-color: #f1f5f9;
+    color: var(--color-text-main, #0f172a);
+}
+
+.records-table th.th-sortable:focus-visible {
+    outline: 2px solid var(--color-primary, #2563eb);
+    outline-offset: -2px;
+}
+
+.th-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.625rem;
+    width: 100%;
+}
+
+.th-label {
+    flex: 1;
+}
+
+/* ==========================================================================
+   Sort Icons
+   ========================================================================== */
+.sort-icon-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: var(--radius-sm, 6px);
+    transition: all var(--transition-fast, 150ms ease);
+    color: var(--color-text-subtle, #94a3b8);
+}
+
+.sort-icon {
+    display: block;
+    transition: transform var(--transition-fast, 150ms ease);
+}
+
+.sort-arrow {
+    transition: stroke var(--transition-fast, 150ms ease), opacity var(--transition-fast, 150ms ease);
+}
+
+/* Idle State */
+.sort-icon-container.is-idle .sort-arrow {
+    opacity: 0.45;
+}
+
+.records-table th.th-sortable:hover .sort-icon-container.is-idle .sort-arrow {
+    opacity: 0.85;
+    color: var(--color-text-muted, #475569);
+}
+
+/* Ascending Sorted State */
+.records-table th.th-sorted-asc {
+    background-color: var(--color-primary-light, #eff6ff);
+    color: var(--color-primary, #2563eb);
+}
+
+.sort-icon-container.is-asc {
+    background-color: var(--color-primary-subtle, #dbeafe);
+    color: var(--color-primary, #2563eb);
+}
+
+.sort-icon-container.is-asc .sort-arrow-up {
+    stroke: var(--color-primary, #2563eb);
+    opacity: 1;
+    stroke-width: 2.25;
+}
+
+.sort-icon-container.is-asc .sort-arrow-down {
+    opacity: 0.2;
+}
+
+/* Descending Sorted State */
+.records-table th.th-sorted-desc {
+    background-color: var(--color-primary-light, #eff6ff);
+    color: var(--color-primary, #2563eb);
+}
+
+.sort-icon-container.is-desc {
+    background-color: var(--color-primary-subtle, #dbeafe);
+    color: var(--color-primary, #2563eb);
+}
+
+.sort-icon-container.is-desc .sort-arrow-down {
+    stroke: var(--color-primary, #2563eb);
+    opacity: 1;
+    stroke-width: 2.25;
+}
+
+.sort-icon-container.is-desc .sort-arrow-up {
+    opacity: 0.2;
+}
+
+/* ==========================================================================
+   Table Body Cells & Rows
+   ========================================================================== */
+.records-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    color: var(--color-text-main, #0f172a);
+    vertical-align: middle;
+    transition: background-color var(--transition-fast, 150ms ease);
+}
+
+.records-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.records-table tbody tr {
+    transition: background-color var(--transition-fast, 150ms ease);
+}
+
+.records-table tbody tr:hover {
+    background-color: var(--color-bg-subtle, #f8fafc);
+}
+
+.records-table td.td-actions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.actions-button-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* Table Action Buttons */
+.btn-table-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid transparent;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast, 150ms ease);
+    line-height: 1;
+}
+
+.btn-table-action svg {
+    flex-shrink: 0;
+}
+
+.btn-table-edit {
+    background-color: var(--color-primary-light, #eff6ff);
+    color: var(--color-primary, #2563eb);
+    border-color: var(--color-primary-subtle, #dbeafe);
+}
+
+.btn-table-edit:hover {
+    background-color: var(--color-primary-subtle, #dbeafe);
+    color: var(--color-primary-hover, #1d4ed8);
+}
+
+.btn-table-delete {
+    background-color: var(--color-danger-light, #fef2f2);
+    color: var(--color-danger, #ef4444);
+    border-color: var(--color-danger-subtle, #fee2e2);
+}
+
+.btn-table-delete:hover {
+    background-color: var(--color-danger-subtle, #fee2e2);
+    color: var(--color-danger-hover, #dc2626);
+}
+
+.btn-table-action:focus-visible {
+    outline: 2px solid var(--color-primary, #2563eb);
+    outline-offset: 1px;
+}
+
+/* ==========================================================================
+   Empty State
+   ========================================================================== */
+.table-empty-cell {
+    padding: 3.5rem 1.5rem !important;
+    text-align: center;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--color-text-subtle, #94a3b8);
+}
+
+.empty-icon {
+    stroke: var(--color-text-subtle, #94a3b8);
+    margin-bottom: 0.25rem;
+}
+
+.empty-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted, #475569);
+}
+
+.empty-subtext {
+    font-size: 0.875rem;
+    color: var(--color-text-subtle, #94a3b8);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 768px) {
+    .records-table th,
+    .records-table td {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.8125rem;
+    }
+
+    .btn-table-action {
+        padding: 0.375rem 0.625rem;
+        font-size: 0.75rem;
+    }
+}
